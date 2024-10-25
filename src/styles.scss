@@ -65,11 +65,23 @@ h6 {
 h1 {
   font-size: 3.25rem;
   line-height: 4rem;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
 }
 
 h2 {
   font-size: 2.5rem;
   line-height: 3.5rem;
+  @media (max-width: 768px) {
+  }
 }
 
 h3 {
@@ -97,8 +109,57 @@ a {
 }
 
 .container {
-  max-width: calc(1216px - 3rem);
+  max-width: 1200px;
   width: calc(100% - 3rem);
   margin: auto;
   padding: 0 1.5rem;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 2.5rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.5rem;
+
+  &_primary {
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
+    color: var(--white);
+
+    &:hover {
+      @media (hover: hover) and (pointer: fine) {
+        background-color: var(--primary-hover);
+        border: 1px solid var(--primary-hover);
+      }
+    }
+    &:active {
+      background-color: var(--primary-hover);
+      border: 1px solid var(--primary-hover);
+    }
+  }
+
+  &_light {
+    background-color: var(--light-grey);
+    border: 1px solid var(--light-grey);
+    color: var(--black);
+
+    &:hover {
+      @media (hover: hover) and (pointer: fine) {
+        background-color: var(--white);
+        border: 1px solid var(--mid-grey);
+      }
+    }
+    &:active {
+      background-color: var(--white);
+      border: 1px solid var(--mid-grey);
+    }
+  }
 }
