@@ -1,0 +1,200 @@
+@use '../../../mixins.scss' as *;
+
+:host {
+  display: block;
+  background-image: url('../../../assets/images/top-bg.jpg');
+  background-color: rgba(var(--primary-rgb), 0.8);
+  background-blend-mode: overlay;
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  color: var(--white);
+  text-align: center;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.62rem 0;
+}
+
+::ng-deep app-menu {
+  width: 100%;
+}
+
+.menu {
+  position: relative;
+
+  a {
+    @include text_16;
+  }
+
+  &_desk {
+    ::ng-deep ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+
+      li {
+        margin-right: 1.5rem;
+        a {
+          color: var(--white);
+          display: block;
+          position: relative;
+
+          &:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            transition: all 0.3s;
+          }
+
+          &:hover {
+            &:after {
+              @media (hover: hover) and (pointer: fine) {
+                background-color: var(--white);
+              }
+            }
+          }
+          &:active {
+            &:after {
+              background-color: var(--white);
+            }
+          }
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    @media (max-width: 786px) {
+      display: none;
+    }
+  }
+
+  &_burger {
+    @media (min-width: 786px) {
+      display: none;
+    }
+
+    ::ng-deep ul {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+
+      li {
+        padding: 1rem 0;
+        border-top: solid 1px var(--light-grey);
+        width: 100%;
+        display: flex;
+
+        a {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          color: var(--grey);
+          @include text_18;
+
+          &::after {
+            content: '';
+            display: inline-block;
+            background-image: url('../../../assets/images/angle-small-right.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 1.5rem;
+            height: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+
+  &__sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: calc(100% - 2.5rem);
+    height: 100vh;
+    padding: 0 1.5rem 0 1rem;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    &.menu_open {
+      transform: translateX(0);
+    }
+
+    &.menu_closed {
+      transform: translateX(100%);
+    }
+
+    .logo {
+      padding: 1.75rem 0;
+    }
+  }
+}
+
+.icon-burger {
+  border: none;
+  background: none;
+  position: absolute;
+  z-index: 3;
+  top: -0.5rem;
+  right: 0;
+  padding: 0;
+  margin: 0;
+
+  &__line {
+    width: 23px;
+    height: 2px;
+    position: absolute;
+    right: 0;
+
+    &:nth-child(1) {
+      top: 0;
+    }
+    &:nth-child(2) {
+      top: 0.5rem;
+    }
+  }
+
+  &.burger {
+    .icon-burger__line {
+      background: var(--white);
+    }
+  }
+
+  &.cross {
+    .icon-burger__line {
+      background: var(--black);
+
+      &:nth-child(1) {
+        transform: rotate(45deg);
+        transform-origin: center;
+        margin-bottom: 0;
+        position: absolute;
+        top: 0;
+      }
+      &:nth-child(2) {
+        transform: rotate(-45deg);
+        transform-origin: center;
+        position: absolute;
+        top: 0;
+      }
+    }
+  }
+}

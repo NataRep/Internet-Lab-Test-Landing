@@ -1,18 +1,44 @@
+@use 'mixins.scss' as *;
+@import 'normalize.css';
 @import url('./assets/font/graphik-lgg/stylesheet.css');
 
 :root {
   --black: #191c1f;
-  --dark-gray: #5e646a;
-  --gray: #83898f;
+  --dark-grey: #5e646a;
+  --grey: #83898f;
   --mid-grey: #c2c8cd;
-  --light-gray: #eceff2;
-  --extralight-gray: #f6f8fa;
+  --light-grey: #eceff2;
+  --extralight-grey: #f6f8fa;
   --white: #fff;
   --red: #f13636;
   --green-success: #25cd82;
   --primary-disabled: #abcae6;
   --primary: #2a6cea;
   --primary-hover: #397dff;
+
+  // For use with rgba
+  --black-rgb: 25, 28, 31;
+  --dark-gray-rgb: 94, 100, 106;
+  --gray-rgb: 131, 137, 143;
+  --mid-grey-rgb: 194, 200, 205;
+  --light-gray-rgb: 236, 239, 242;
+  --extralight-gray-rgb: 246, 248, 250;
+  --white-rgb: 255, 255, 255;
+  --red-rgb: 241, 54, 54;
+  --green-success-rgb: 37, 205, 130;
+  --primary-disabled-rgb: 171, 202, 230;
+  --primary-rgb: 42, 108, 234;
+  --primary-hover-rgb: 57, 125, 255;
+}
+
+* {
+  -webkit-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -23,6 +49,7 @@ body {
   margin: 0;
   font-family: 'Graphik LCG', 'Helvetica Neue', sans-serif;
   color: var(--black);
+  @include text_16;
 }
 
 h1,
@@ -65,36 +92,13 @@ h6 {
   line-height: 1.5rem;
 }
 
-.text_18 {
-  font-size: 1.125rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 2rem;
+a {
+  text-decoration: none;
 }
 
-.text_16 {
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.75rem;
-}
-
-.text_14 {
-  font-family: 'Graphik LCG';
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5rem;
-}
-
-.text_12 {
-  font-family: 'Graphik LCG';
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1rem;
-}
-
-.text_bold {
-  font-weight: 600;
+.container {
+  max-width: calc(1216px - 3rem);
+  width: calc(100% - 3rem);
+  margin: auto;
+  padding: 0 1.5rem;
 }

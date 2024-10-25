@@ -1,1 +1,30 @@
-<p>header works!</p>
+<div class="container">
+  <header>
+    <div class="logo">
+      <a href="/"><img src="assets/images/logo.svg" alt="logotype" /></a>
+    </div>
+    <nav>
+      <div class="menu_desk menu"><app-menu [isMobileMenu]="false"></app-menu></div>
+      <div class="menu_burger menu">
+        <button
+          class="menu__icon icon-burger"
+          (click)="toggleMenu()"
+          [ngClass]="{ burger: !isMenuOpen, cross: isMenuOpen }">
+          <div class="icon-burger__line"></div>
+          <div class="icon-burger__line"></div>
+        </button>
+        <div class="menu__sidebar" [ngClass]="{ menu_open: isMenuOpen, menu_closed: !isMenuOpen }">
+          <div class="logo" (click)="toggleMenu()">
+            <a href="/"><img src="assets/images/logo-black-text.svg" alt="logotype" /></a>
+          </div>
+          <app-menu [isMobileMenu]="true" (menuItemClicked)="handleMenuClick($event)"></app-menu>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <section>
+    <h1>Говорят, никогда не поздно сменить профессию</h1>
+    <p>Сделай круто тестовое задание и у тебя получится</p>
+  </section>
+</div>
+\

@@ -1,0 +1,29 @@
+// Миксины для каждого текстового стиля из фигмы
+
+@mixin text-style($font-size, $line-height, $font-weight: 400, $font-family: 'Graphik LCG') {
+  font-family: $font-family;
+  font-size: $font-size;
+  font-style: normal;
+  font-weight: $font-weight;
+  line-height: $line-height;
+}
+
+@mixin text_18 {
+  @include text-style(1.125rem, 2rem);
+}
+
+@mixin text_16 {
+  @include text-style(1rem, 1.75rem);
+}
+
+@mixin text_14 {
+  @include text-style(0.875rem, 1.5rem);
+}
+
+@mixin text_12 {
+  @include text-style(0.75rem, 1rem);
+}
+
+@mixin text_bold {
+  font-weight: 600;
+}
