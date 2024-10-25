@@ -1,0 +1,14 @@
+<section class="container section-how-it-work" id="about">
+  <h2>Как это работает</h2>
+  <ul class="section-how-it-work__items-list">
+    @for (item of itemsList; track item.title) {
+      <li class="section-how-it-work__item">
+        <img src="assets/icons/{{ item.img }}" alt="{{ item.title }} иконка" class="section-how-it-work__icon" />
+        <div class="section-how-it-work__text">
+          <h6 class="section-how-it-work__item-title">{{ item.title }}</h6>
+          <div class="section-how-it-work__item-text">{{ item.text }}</div>
+        </div>
+      </li>
+    }
+  </ul>
+</section>

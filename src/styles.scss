@@ -71,7 +71,7 @@ h1 {
     line-height: 2.5rem;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 540px) {
     font-size: 1.5rem;
     line-height: 2rem;
   }
@@ -80,7 +80,10 @@ h1 {
 h2 {
   font-size: 2.5rem;
   line-height: 3.5rem;
-  @media (max-width: 768px) {
+
+  @media (max-width: 540px) {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 }
 
@@ -102,10 +105,20 @@ h5 {
 h6 {
   font-size: 1rem;
   line-height: 1.5rem;
+  margin: 1rem 0;
 }
 
 a {
   text-decoration: none;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
 }
 
 .container {
