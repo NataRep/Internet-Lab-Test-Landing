@@ -8,7 +8,7 @@ interface Link {
 const linksArray: Link[] = [
   {
     name: 'Как это работает',
-    path: '#about',
+    path: '#how-it-works',
   },
   {
     name: '3-й блок',
