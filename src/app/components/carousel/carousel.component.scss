@@ -1,0 +1,116 @@
+@use '../../../mixins.scss' as *;
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.125rem;
+
+  &__wrapper {
+    overflow: hidden;
+    width: 1130px;
+    margin: auto;
+  }
+
+  &__items-list {
+    width: fit-content;
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  &__item {
+    width: 21.5rem;
+    padding: 2rem 1rem;
+    display: flex;
+
+    &-content {
+      padding: 1.375rem 1.375rem 3.875rem 1.375rem;
+      border-radius: 0.5rem;
+      background: var(--white);
+      box-shadow: 0px 5px 24px 0px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    &-heading {
+      display: flex;
+      gap: 1rem;
+    }
+
+    &-avatar {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+    }
+    &-autor {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    &-name {
+      margin: 0;
+    }
+
+    &-text {
+      @include text-14;
+    }
+
+    &-location {
+      @include text-12;
+      color: var(--dark-grey);
+    }
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-100%);
+  }
+
+  &__indicators {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  &__indicator {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--mid-grey);
+    border-radius: 50%;
+
+    &.current {
+      background-color: var(--primary);
+    }
+  }
+
+  &__button {
+    border: none;
+    background: none;
+    display: flex;
+    cursor: pointer;
+
+    &:hover {
+      @media (hover: hover) and (pointer: fine) {
+        svg path {
+          fill: var(--primary);
+        }
+      }
+    }
+
+    &:active {
+      svg path {
+        fill: var(--primary);
+      }
+    }
+  }
+}
