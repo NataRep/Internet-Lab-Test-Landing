@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface Feedback {
@@ -46,13 +46,13 @@ const feedbacks: Feedback[] = [
   standalone: true,
   imports: [CommonModule],
   templateUrl: './carousel.component.html',
-  styleUrl: './carousel.component.scss',
+  styleUrls: ['./carousel.component.scss'],
 })
 export class CarouselComponent implements AfterViewInit {
   @ViewChild('carouselItemsList') carouselItemsList!: ElementRef;
   @ViewChild('carouselWrapper') carouselWrapper!: ElementRef;
-  @ViewChild('counterCurrent') counterCurrent!: ElementRef;
-  @ViewChild('counterAll') counterAll!: ElementRef;
+  @ViewChild('buttonPrev') buttonPrev!: ElementRef;
+  @ViewChild('buttonNext') buttonNext!: ElementRef;
 
   items = feedbacks;
   index = 0;
@@ -61,48 +61,103 @@ export class CarouselComponent implements AfterViewInit {
   wrapperWidth = 0;
   itemWidth = 0;
   countItemsOnSlide = 1;
-  intervalId!: number;
+  indexCurrentIndicator = 0;
+  indicators!: boolean[];
+
+  private startX!: number;
+  private endX!: number;
 
   ngAfterViewInit() {
     this.initializeCarousel();
-    //this.startAutoplay();
+    this.updateButtonStates();
+    this.createIndicators();
   }
 
   initializeCarousel() {
     const wrapperEl = this.carouselWrapper.nativeElement;
     const itemsListEl = this.carouselItemsList.nativeElement;
-
-    // Get dimensions and setup items
     this.wrapperWidth = wrapperEl.offsetWidth;
     this.itemWidth = itemsListEl.querySelector('.carousel__item').offsetWidth;
     this.itemsCount = itemsListEl.querySelectorAll('.carousel__item').length;
     this.countItemsOnSlide = Math.round(this.wrapperWidth / this.itemWidth);
   }
 
+  createIndicators() {
+    const indicatorsCount = Math.ceil(this.itemsCount - (this.countItemsOnSlide - 1));
+    this.indicators = new Array(indicatorsCount).fill(false);
+  }
+
   moveSlide(direction: 'next' | 'prev') {
-    console.log(this.index);
-    console.log('wrapperWidth', this.wrapperWidth);
-    console.log('itemsCount', this.itemsCount);
-    console.log('countItemsOnSlide', this.countItemsOnSlide);
-    // Update index based on direction
     if (direction === 'next') {
-      this.index++;
-      //if (this.index >= this.itemsCount / this.countItemsOnSlide) {        this.index = 0;      }
+      if (this.index < this.itemsCount - 1) {
+        this.index++;
+      }
     } else {
-      this.index--;
-      //if (this.index < 0) {        this.index = Math.floor(this.itemsCount / this.countItemsOnSlide) - 1;      }
+      if (this.index > 0) {
+        this.index--;
+      }
     }
 
-    // Calculate new position and update transform
+    this.changePosition();
+    this.updateButtonStates();
+    this.updateIndicators(direction);
+  }
+
+  changePosition() {
     this.position = -this.itemWidth * this.index;
     this.carouselItemsList.nativeElement.style.transform = `translateX(${this.position}px)`;
   }
 
-  startAutoplay() {
-    this.intervalId = setInterval(() => this.moveSlide('next'), 4000);
+  updateButtonStates(): void {
+    this.buttonPrev.nativeElement.disabled = this.index === 0;
+    this.buttonNext.nativeElement.disabled = this.index === this.itemsCount - this.countItemsOnSlide;
   }
 
-  stopAutoplay() {
-    clearInterval(this.intervalId);
+  updateIndicators(direction: 'next' | 'prev'): void {
+    if (direction === 'next') {
+      this.indexCurrentIndicator++;
+    } else {
+      this.indexCurrentIndicator--;
+    }
+  }
+
+  @HostListener('touchstart', ['$event'])
+  onTouchStart(event: TouchEvent) {
+    this.startX = event.touches[0].clientX;
+  }
+
+  @HostListener('touchend', ['$event'])
+  onTouchEnd(event: TouchEvent) {
+    this.endX = event.changedTouches[0].clientX;
+    this.handleSwipe();
+  }
+
+  @HostListener('mousedown', ['$event'])
+  onMouseDown(event: MouseEvent) {
+    this.startX = event.clientX;
+  }
+
+  @HostListener('mouseup', ['$event'])
+  onMouseUp(event: MouseEvent) {
+    this.endX = event.clientX;
+    this.handleSwipe();
+  }
+
+  private handleSwipe() {
+    const threshold = 50;
+    const diff = this.startX - this.endX;
+
+    if (this.index === 0 && diff < -threshold) {
+      return;
+    }
+    if (this.index === this.itemsCount - this.countItemsOnSlide && diff > threshold) {
+      return;
+    }
+
+    if (diff > threshold) {
+      this.moveSlide('next');
+    } else if (diff < -threshold) {
+      this.moveSlide('prev');
+    }
   }
 }

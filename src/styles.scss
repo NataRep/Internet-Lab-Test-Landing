@@ -131,6 +131,16 @@ li {
   width: calc(100% - 3rem);
   margin: auto;
   padding: 0 1.5rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+    width: calc(100% - 2rem);
+  }
+
+  @media (max-width: 375px) {
+    padding: 0 0.5rem;
+    width: calc(100% - 1rem);
+  }
 }
 
 .button {
