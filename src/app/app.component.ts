@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from './components/header/header.component';
-import { SecondSectionsComponent } from './components/sections/second/second.component';
+import { SecondComponent } from './components/sections/second/second.component';
+import { ThirdComponent } from './components/sections/third/third.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, SecondSectionsComponent],
+  imports: [HeaderComponent, SecondComponent, ThirdComponent],
   providers: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

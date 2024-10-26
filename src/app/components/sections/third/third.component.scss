@@ -1,0 +1,29 @@
+@use '../../../../mixins.scss' as *;
+
+.third-block {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  @media (max-width: 540px) {
+    flex-direction: column-reverse;
+  }
+
+  &__info {
+    @media (max-width: 540px) {
+      text-align: center;
+    }
+  }
+
+  &__text {
+    color: var(--dark-grey);
+  }
+
+  &__img {
+    width: calc(50% - 2rem);
+
+    @media (max-width: 540px) {
+      width: 100%;
+    }
+  }
+}

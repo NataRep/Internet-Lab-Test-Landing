@@ -29,12 +29,12 @@ const itemsList: Item[] = [
 ];
 
 @Component({
-  selector: 'app-second-sections',
+  selector: 'app-second',
   standalone: true,
   imports: [],
   templateUrl: './second.component.html',
   styleUrl: './second.component.scss',
 })
-export class SecondSectionsComponent {
+export class SecondComponent {
   itemsList: Item[] = itemsList;
 }
