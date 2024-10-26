@@ -73,6 +73,13 @@ export class CarouselComponent implements AfterViewInit {
     this.createIndicators();
   }
 
+  @HostListener('window:resize', [])
+  onResize() {
+    this.initializeCarousel();
+    this.updateButtonStates();
+    this.createIndicators();
+  }
+
   initializeCarousel() {
     const wrapperEl = this.carouselWrapper.nativeElement;
     const itemsListEl = this.carouselItemsList.nativeElement;
