@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface Feedback {
@@ -67,6 +67,8 @@ export class CarouselComponent implements AfterViewInit {
   private startX!: number;
   private endX!: number;
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
   ngAfterViewInit() {
     this.initializeCarousel();
     this.updateButtonStates();
@@ -76,6 +78,9 @@ export class CarouselComponent implements AfterViewInit {
   @HostListener('window:resize', [])
   onResize() {
     this.initializeCarousel();
+    this.index = 0;
+    this.position = 0;
+    this.changePosition();
     this.updateButtonStates();
     this.createIndicators();
   }
@@ -92,6 +97,8 @@ export class CarouselComponent implements AfterViewInit {
   createIndicators() {
     const indicatorsCount = Math.ceil(this.itemsCount - (this.countItemsOnSlide - 1));
     this.indicators = new Array(indicatorsCount).fill(false);
+    this.updateCurrentIndicator();
+    this.cdr.detectChanges();
   }
 
   moveSlide(direction: 'next' | 'prev') {
@@ -107,7 +114,7 @@ export class CarouselComponent implements AfterViewInit {
 
     this.changePosition();
     this.updateButtonStates();
-    this.updateIndicators(direction);
+    this.updateCurrentIndicator();
   }
 
   changePosition() {
@@ -120,12 +127,10 @@ export class CarouselComponent implements AfterViewInit {
     this.buttonNext.nativeElement.disabled = this.index === this.itemsCount - this.countItemsOnSlide;
   }
 
-  updateIndicators(direction: 'next' | 'prev'): void {
-    if (direction === 'next') {
-      this.indexCurrentIndicator++;
-    } else {
-      this.indexCurrentIndicator--;
-    }
+  updateCurrentIndicator(): void {
+    this.indexCurrentIndicator = Math.floor(this.index);
+    this.indicators.fill(false);
+    this.indicators[this.indexCurrentIndicator] = true;
   }
 
   @HostListener('touchstart', ['$event'])
