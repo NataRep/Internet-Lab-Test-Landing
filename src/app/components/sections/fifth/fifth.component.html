@@ -1,0 +1,8 @@
+<section class="container questions" id="questions-answers">
+  <h2 class="questions__title">Вопросы и ответы</h2>
+  <div class="questions__accordions">
+    @for (question of questions; track question.question) {
+      <app-accordion [content]="question"></app-accordion>
+    }
+  </div>
+</section>

@@ -5,7 +5,7 @@ interface Item {
   text: string;
   img: string;
 }
-const itemsList: Item[] = [
+const ITEMS: Item[] = [
   {
     title: 'Прочитай задание внимательно',
     text: 'Думаю у тебя не займет это больше двух-трех минут',
@@ -36,5 +36,5 @@ const itemsList: Item[] = [
   styleUrl: './second.component.scss',
 })
 export class SecondComponent {
-  itemsList: Item[] = itemsList;
+  itemsList: Item[] = ITEMS;
 }

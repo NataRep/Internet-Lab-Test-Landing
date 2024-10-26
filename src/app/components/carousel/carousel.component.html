@@ -1,21 +1,23 @@
 <div class="carousel">
   <div #carouselWrapper class="carousel__wrapper">
     <ul #carouselItemsList class="carousel__items-list">
-      <li *ngFor="let item of items" class="carousel__item">
-        <div class="carousel__item-content">
-          <div class="carousel__item-heading">
-            <img
-              class="carousel__item-avatar"
-              src="../../../assets/images/{{ item.avatar }}"
-              alt="{{ item.name }} аватар" />
-            <div class="carousel__item-autor">
-              <h6 class="carousel__item-name">{{ item.name }}</h6>
-              <div class="carousel__item-location">{{ item.location }}</div>
+      @for (item of items; track item.name) {
+        <li class="carousel__item">
+          <div class="carousel__item-content">
+            <div class="carousel__item-heading">
+              <img
+                class="carousel__item-avatar"
+                src="../../../assets/images/{{ item.avatar }}"
+                alt="{{ item.name }} аватар" />
+              <div class="carousel__item-autor">
+                <h6 class="carousel__item-name">{{ item.name }}</h6>
+                <div class="carousel__item-location">{{ item.location }}</div>
+              </div>
             </div>
+            <div class="carousel__item-text">{{ item.text }}</div>
           </div>
-          <div class="carousel__item-text">{{ item.text }}</div>
-        </div>
-      </li>
+        </li>
+      }
     </ul>
   </div>
 

@@ -1,0 +1,8 @@
+<div class="accordion" [class.open]="isOpen">
+  <div class="accordion__heading" (click)="toggleOpen()">{{ content.question }}</div>
+  @if (isOpen) {
+    <div class="accordion__content" [class.open]="isOpen">
+      <p>{{ content.answer }}</p>
+    </div>
+  }
+</div>

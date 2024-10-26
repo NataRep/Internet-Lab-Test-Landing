@@ -5,7 +5,7 @@ interface Link {
   path: string;
 }
 
-const linksArray: Link[] = [
+const LINKS: Link[] = [
   {
     name: 'Как это работает',
     path: '#how-it-works',
@@ -37,7 +37,7 @@ export class MenuComponent {
   @Input() isMobileMenu = false;
 
   constructor() {
-    this.links = linksArray;
+    this.links = LINKS;
   }
 
   onMenuClick() {
