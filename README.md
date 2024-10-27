@@ -1,14 +1,26 @@
 # TestLab
-Landing page layout as a test assignment.
 
-The items of the assignment were completed by me:
+## Описание проекта
 
-1) The task is done in Angular 18.2.0
-2) The layout should be adaptive on all resolutions (up to 320px)
-3) Implemented typography from the layout
-4) Implemented element states from the layout
-5) Slider implemented
-6) Form with validation implemented
-7) Form submission - server error comes as the server is not real.
+**TestLab** — это адаптивный лендинг, разработанный в рамках тестового задания для компании Лаборатория Интернет. 
+Проект реализован на Angular 18.2.0.
+
+## Содержимое задания
+
+В рамках выполнения задания были реализованы следующие пункты:
+
+1. **Технологии**: Использован Angular 18.2.0.
+2. **Адаптивный дизайн**: Лендинг адаптируется под все разрешения, включая мобильные устройства (до 320px).
+3. **Типографика**: Реализована типографика, соответствующая макету.
+4. **Состояния элементов**: Все состояния элементов (hover, active и т.д.) внедрены в проект.
+5. **Слайдер**: Имплементирован слайдер для демонстрации контента.
+6. **Форма с валидацией**: Форма включает валидацию ввода данных.
+7. **Обработка отправки формы**: В случае отправки формы возвращается ошибка сервера, так как сервер не существует.
+
+## Демо
+
+Вы можете ознакомиться с рабочей версией проекта по следующей ссылке:  
+[Демо TestLab](https://NataliaRepkina.github.io/Internet-Lab-Test-Landing/)
+
 
 
