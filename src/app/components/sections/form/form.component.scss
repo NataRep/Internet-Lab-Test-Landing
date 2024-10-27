@@ -155,16 +155,12 @@
   }
 }
 
-.successful-message {
+.message {
   @include text-18;
   color: var(--dark-grey);
   border-radius: 1rem;
   padding: 1rem 1.5rem 1rem 3.5rem;
-  border: solid 2px var(--green-success);
   background: var(--white);
-  background-image: url('./../../../../assets/icons/input-valid.svg');
-  background-position: left 1.125rem center;
-  background-repeat: no-repeat;
   box-shadow: 0px 5px 24px 0px rgba(0, 0, 0, 0.1);
   display: flex;
   width: fit-content;
@@ -172,7 +168,21 @@
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  animation: opacity 2.5s ease forwards;
+  animation: opacity 3.5s ease forwards;
+
+  &_successful {
+    border: solid 2px var(--green-success);
+    background-image: url('./../../../../assets/icons/input-valid.svg');
+    background-position: left 1.125rem center;
+    background-repeat: no-repeat;
+  }
+
+  &_error {
+    border: solid 2px var(--red);
+    background-image: url('./../../../../assets/icons/input-invalid.svg');
+    background-position: left 1.125rem center;
+    background-repeat: no-repeat;
+  }
 }
 
 @keyframes opacity {

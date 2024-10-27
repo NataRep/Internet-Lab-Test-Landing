@@ -60,5 +60,13 @@
       <button type="submit" [disabled]="form.invalid" class="button button_primary">Отправить</button>
     </div>
   </form>
-  <div class="successful-message" *ngIf="message">Ваше сообщение отправлено</div>
+  <div
+    class="message"
+    *ngIf="submissionMessage !== ''"
+    [ngClass]="{
+      message_successful: submissionStatus,
+      message_error: !submissionStatus,
+    }">
+    {{ submissionMessage }}
+  </div>
 </section>
