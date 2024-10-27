@@ -1,0 +1,33 @@
+@use '../../../../mixins.scss' as *;
+
+:host {
+  display: block;
+  background-color: var(--extralight-grey);
+}
+.articles {
+  padding-top: 4rem;
+
+  @media (max-width: 768px) {
+    padding-top: 1.5rem;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem 2.25rem;
+  }
+
+  &__item {
+    width: calc(50% - 2rem);
+
+    @media (max-width: 980px) {
+      width: 100%;
+    }
+
+    &-title {
+      @include text-18;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+  }
+}
