@@ -1,0 +1,72 @@
+<section class="container form-section" id="form">
+  <h2 class="form-section__title">Отправь форму</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <div class="form__row">
+      <div
+        class="form__input-wrapper"
+        [ngClass]="{
+          valid: form.get('name')?.valid && form.get('name')?.touched,
+          invalid: form.get('name')?.invalid && form.get('name')?.touched,
+        }">
+        <input
+          class="form__input input"
+          id="name"
+          formControlName="name"
+          type="text"
+          placeholder="Ваше имя"
+          (blur)="checkValidity('name')"
+          [ngClass]="{
+            invalid: form.get('name')?.invalid && form.get('name')?.touched,
+          }" />
+        <label for="name" class="form__label label">Имя</label>
+        <div class="input__error" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+          Введите имя (используйте только буквы)
+        </div>
+      </div>
+
+      <div
+        class="form__input-wrapper"
+        [ngClass]="{
+          valid: form.get('phone')?.valid && form.get('phone')?.touched,
+          invalid: form.get('phone')?.invalid && form.get('phone')?.touched,
+        }">
+        <input
+          class="form__input input"
+          id="phone"
+          formControlName="phone"
+          type="tel"
+          placeholder="8-000-000-00-00"
+          (blur)="checkValidity('phone')"
+          [ngClass]="{
+            invalid: form.get('phone')?.invalid && form.get('phone')?.touched,
+          }" />
+        <label for="phone" class="form__label label">Телефон</label>
+        <div *ngIf="form.get('phone')?.invalid && form.get('phone')?.touched" class="input__error">
+          Введите корректный номер телефона
+        </div>
+      </div>
+    </div>
+    <div class="form__row">
+      <div class="form__input-wrapper">
+        <label class="checkbox-label">
+          <input type="checkbox" formControlName="agreed" class="checkbox" />
+          Согласен, отказываюсь
+        </label>
+        <div *ngIf="form.get('agreed')?.invalid && form.get('agreed')?.touched" class="input__error">
+          Необходимо согласие
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="form.invalid" class="button button_primary">Отправить</button>
+    </div>
+  </form>
+  <div
+    class="message"
+    *ngIf="submissionMessage !== ''"
+    [ngClass]="{
+      message_successful: submissionStatus,
+      message_error: !submissionStatus,
+    }">
+    {{ submissionMessage }}
+  </div>
+</section>

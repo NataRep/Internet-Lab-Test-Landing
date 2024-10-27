@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="header">
+    <div class="logo">
+      <a href="/"><img src="assets/images/logo.svg" alt="logotype" /></a>
+    </div>
+    <nav class="nav">
+      <div class="menu menu_desk"><app-menu [isMobileMenu]="false"></app-menu></div>
+      <div class="menu menu_burger">
+        <button
+          class="menu__icon icon-burger"
+          (click)="toggleMenu()"
+          [ngClass]="{ burger: !isMenuOpen, cross: isMenuOpen }">
+          <div class="icon-burger__line"></div>
+          <div class="icon-burger__line"></div>
+        </button>
+        <div class="menu__sidebar" [ngClass]="{ menu_open: isMenuOpen, menu_closed: !isMenuOpen }">
+          <div class="logo" (click)="toggleMenu()">
+            <a href="/"><img src="assets/images/logo-black-text.svg" alt="logotype" /></a>
+          </div>
+          <app-menu [isMobileMenu]="true" (menuItemClicked)="handleMenuClick($event)"></app-menu>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <section class="top-section">
+    <h1 class="top-section__h1">Говорят, никогда не поздно сменить профессию</h1>
+    <p class="top-section__desc">Сделай круто тестовое задание и&nbsp;у&nbsp;тебя получится</p>
+    <a class="button button_light" href="#form">Проще простого!</a>
+  </section>
+</div>

@@ -1,0 +1,11 @@
+.questions {
+  padding: 2.5rem 1.5rem 5rem;
+
+  @media (max-width: 768px) {
+    padding: 2rem 0.5rem 3.5rem;
+  }
+
+  &__title {
+    text-align: center;
+  }
+}

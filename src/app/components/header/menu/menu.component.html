@@ -1,0 +1,7 @@
+<ul class="linksList">
+  @for (link of links; track link.name) {
+    <li class="linksList__item">
+      <a href="{{ link.path }}" (click)="onMenuClick()" class="linksList__link">{{ link.name }}</a>
+    </li>
+  }
+</ul>
