@@ -1,0 +1,53 @@
+<section class="container form-section" id="form">
+  <h2 class="form-section__title">Отправь форму</h2>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="form-section form">
+    <div class="form__row">
+      <div class="form__input-wrapper">
+        <label for="name" class="form__label label">Имя</label>
+        <input
+          class="form__input input"
+          id="name"
+          formControlName="name"
+          type="text"
+          placeholder="Ваше имя"
+          (blur)="checkValidity('name')"
+          [ngClass]="{
+            input_invalid: userForm.get('name')?.invalid && userForm.get('name')?.touched,
+          }" />
+        <div class="input__error" *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
+          Имя обязательно
+        </div>
+      </div>
+
+      <div class="form__input-wrapper">
+        <label for="phone" class="form__label label">Телефон</label>
+        <input
+          class="form__input input"
+          id="phone"
+          formControlName="phone"
+          type="tel"
+          placeholder="8-000-000-00-00"
+          (blur)="checkValidity('phone')"
+          [ngClass]="{
+            input_invalid: userForm.get('phone')?.invalid && userForm.get('phone')?.touched,
+          }" />
+        <div *ngIf="userForm.get('phone')?.invalid && userForm.get('phone')?.touched" class="input__error">
+          Введите корректный номер телефона
+        </div>
+      </div>
+    </div>
+    <div class="form__row">
+      <div class="form__input-wrapper">
+        <label>
+          <input type="checkbox" formControlName="agreed" />
+          Согласен, отказываюсь
+        </label>
+        <div *ngIf="userForm.get('agreed')?.invalid && userForm.get('agreed')?.touched" class="input__error">
+          Необходимо согласие
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="userForm.invalid" class="button button_primary">Отправить</button>
+    </div>
+  </form>
+</section>
