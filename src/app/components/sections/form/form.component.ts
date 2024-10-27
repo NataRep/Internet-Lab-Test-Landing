@@ -32,8 +32,8 @@ export class FormComponent {
   checkValidity(controlName: string) {
     const control = this.userForm.get(controlName);
     if (control) {
-      control.markAsTouched(); // Устанавливаем статус поля как "touched" для отображения ошибок
-      control.updateValueAndValidity(); // Обновляем валидность поля
+      control.markAsTouched();
+      control.updateValueAndValidity();
     }
   }
 }
