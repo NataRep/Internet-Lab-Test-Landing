@@ -6,6 +6,7 @@ import { FeedbacksComponent } from './components/sections/feedbacks/feedbacks.co
 import { FaqComponent } from './components/sections/faq/faq.component';
 import { ArticlesComponent } from './components/sections/articles/articles.component';
 import { FormComponent } from './components/sections/form/form.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ import { FormComponent } from './components/sections/form/form.component';
     FaqComponent,
     ArticlesComponent,
     FormComponent,
+    FooterComponent,
   ],
   providers: [],
   templateUrl: './app.component.html',
