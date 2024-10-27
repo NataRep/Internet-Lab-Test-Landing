@@ -8,7 +8,28 @@
   transition: max-height 0.3s ease-in-out;
 
   &__heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
     font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      @media (hover: hover) and (pointer: fine) {
+        color: var(--primary);
+
+        .accordion__cross {
+          border: 2px solid var(--primary);
+        }
+      }
+    }
+
+    &:active {
+      color: var(--primary);
+      .accordion__cross {
+        border: 2px solid var(--primary);
+      }
+    }
   }
 
   &__content {
@@ -16,6 +37,26 @@
     transform: translateY(-1rem);
     animation: fadeIn 0.3s ease forwards;
     padding: 10px;
+  }
+
+  &__cross {
+    margin-top: 0.25rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    border: 2px solid var(--black);
+    font-size: 30px;
+    font-weight: 400;
+  }
+
+  &_open {
+    .accordion__cross {
+      transform: rotateZ(45deg);
+    }
   }
 }
 
