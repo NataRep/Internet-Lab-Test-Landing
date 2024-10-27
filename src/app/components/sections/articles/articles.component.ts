@@ -30,12 +30,12 @@ const ARTICLES: Article[] = [
 ];
 
 @Component({
-  selector: 'app-sixth',
+  selector: 'app-articles',
   standalone: true,
   imports: [],
-  templateUrl: './sixth.component.html',
-  styleUrl: './sixth.component.scss',
+  templateUrl: './articles.component.html',
+  styleUrl: './articles.component.scss',
 })
-export class SixthComponent {
+export class ArticlesComponent {
   articles = ARTICLES;
 }

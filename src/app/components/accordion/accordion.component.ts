@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Question } from '../sections/fifth/fifth.component';
+import { Question } from '../sections/faq/faq.component';
 
 @Component({
   selector: 'app-accordion',

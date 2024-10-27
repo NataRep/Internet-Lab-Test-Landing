@@ -45,12 +45,12 @@ const QUESTIONS: Question[] = [
 ];
 
 @Component({
-  selector: 'app-fifth',
+  selector: 'app-faq',
   standalone: true,
   imports: [AccordionComponent],
-  templateUrl: './fifth.component.html',
-  styleUrl: './fifth.component.scss',
+  templateUrl: './faq.component.html',
+  styleUrl: './faq.component.scss',
 })
-export class FifthComponent {
+export class FaqComponent {
   questions = QUESTIONS;
 }

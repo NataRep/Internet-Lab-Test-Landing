@@ -16,18 +16,18 @@
     flex-wrap: wrap;
     gap: 2rem 2.25rem;
   }
+}
 
-  &__item {
-    width: calc(50% - 2rem);
+.article {
+  width: calc(50% - 2rem);
 
-    @media (max-width: 980px) {
-      width: 100%;
-    }
+  @media (max-width: 980px) {
+    width: 100%;
+  }
 
-    &-title {
-      @include text-18;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
+  &__title {
+    @include text-18;
+    font-weight: 600;
+    margin-bottom: 1rem;
   }
 }

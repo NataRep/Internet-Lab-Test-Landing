@@ -1,0 +1,10 @@
+<section class="container articles">
+  <div class="articles__list">
+    @for (article of articles; track article.index) {
+      <article class="article articles__article">
+        <div class="article__title">{{ article.title }}</div>
+        <div class="article__text">{{ article.text }}</div>
+      </article>
+    }
+  </div>
+</section>
