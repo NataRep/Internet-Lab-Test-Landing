@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { nameValidator, phoneValidator } from './form.validators';
 import { ApiResponse, FormService } from '../../../services/form.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -12,10 +13,11 @@ import { ApiResponse, FormService } from '../../../services/form.service';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
-export class FormComponent {
+export class FormComponent implements OnDestroy {
   form: FormGroup;
   submissionStatus = false;
   submissionMessage = '';
+  private destroy$ = new Subject<void>();
 
   constructor(
     private fb: FormBuilder,
@@ -30,19 +32,22 @@ export class FormComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      this.formService.submit(this.form.value).subscribe({
-        next: (response: ApiResponse) => {
-          console.log(response.message);
-          this.submissionStatus = true;
-          this.submissionMessage = 'Сообщение отправлено';
-          this.resetForm();
-        },
-        error: error => {
-          console.error('Ошибка при отправке:', error);
-          this.submissionStatus = false;
-          this.submissionMessage = 'Ошибка при отправке';
-        },
-      });
+      this.formService
+        .submit(this.form.value)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (response: ApiResponse) => {
+            console.log(response.message);
+            this.submissionStatus = true;
+            this.submissionMessage = 'Сообщение отправлено';
+            this.resetForm();
+          },
+          error: error => {
+            console.error('Ошибка при отправке:', error);
+            this.submissionStatus = false;
+            this.submissionMessage = 'Ошибка при отправке';
+          },
+        });
     }
 
     setTimeout(() => {
@@ -64,5 +69,10 @@ export class FormComponent {
       control.markAsTouched();
       control.updateValueAndValidity();
     }
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
